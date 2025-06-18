@@ -1,4 +1,4 @@
-# Run ruby code in console
+# Run Ruby code in console
 
 ```
 ruby main.rb
