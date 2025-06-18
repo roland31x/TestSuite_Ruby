@@ -2879,3 +2879,1175 @@ def generate_maze_500(w, h)
 
   maze
 end
+
+# 501. Check if array elements are all integers
+def all_integers_501(arr)
+  arr.all? { |e| e.is_a?(Integer) }
+end
+
+# 502. Check if string is palindrome ignoring case and spaces
+def palindrome_ignore_spaces_502(str)
+  normalized = str.downcase.gsub(/\s+/, '')
+  normalized == normalized.reverse
+end
+
+# 503. Return unique elements in array preserving order
+def unique_ordered_503(arr)
+  seen = {}
+  arr.select { |x| seen[x] ? false : seen[x] = true }
+end
+
+# 504. Convert camelCase to snake_case string
+def camel_to_snake_504(str)
+  str.gsub(/([A-Z])/, '_\1').downcase.sub(/^_/, '')
+end
+
+# 505. Capitalize every word in a sentence
+def capitalize_words_505(str)
+  str.split.map(&:capitalize).join(' ')
+end
+
+# 506. Calculate factorial of a number recursively
+def factorial_506(n)
+  return 1 if n <= 1
+  n * factorial_506(n - 1)
+end
+
+# 507. Flatten nested arrays of any depth
+def deep_flatten_507(arr)
+  arr.flat_map { |e| e.is_a?(Array) ? deep_flatten_507(e) : e }
+end
+
+# 508. Check if array is strictly increasing
+def strictly_increasing_508(arr)
+  arr.each_cons(2).all? { |a, b| b > a }
+end
+
+# 509. Generate Fibonacci sequence of length n
+def fibonacci_509(n)
+  fibs = [0, 1]
+  (n - 2).times { fibs << fibs[-1] + fibs[-2] }
+  fibs.take(n)
+end
+
+# 510. Convert array of numbers to hex string array
+def to_hex_array_510(arr)
+  arr.map { |n| n.to_s(16) }
+end
+
+# 511. Remove duplicates from array of hashes by key
+def uniq_by_key_511(arr, key)
+  seen = {}
+  arr.select { |h| seen[h[key]] ? false : seen[h[key]] = true }
+end
+
+# 512. Check if string contains only letters
+def alpha_only_512(str)
+  !!(str =~ /\A[a-zA-Z]+\z/)
+end
+
+# 513. Replace multiple spaces with single space
+def single_space_513(str)
+  str.gsub(/\s+/, ' ')
+end
+
+# 514. Reverse words in a sentence
+def reverse_words_514(str)
+  str.split.reverse.join(' ')
+end
+
+# 515. Calculate GCD of two numbers using Euclidean algorithm
+def gcd_515(a, b)
+  b == 0 ? a : gcd_515(b, a % b)
+end
+
+# 516. Convert string to title case
+def title_case_516(str)
+  str.split.map(&:capitalize).join(' ')
+end
+
+# 517. Remove nil values from array
+def compact_517(arr)
+  arr.compact
+end
+
+# 518. Check if array contains a subarray
+def contains_subarray_518(arr, subarr)
+  arr.each_cons(subarr.size).any? { |slice| slice == subarr }
+end
+
+# 519. Sum only even numbers in array
+def sum_even_519(arr)
+  arr.select(&:even?).sum
+end
+
+# 520. Count vowels in a string
+def count_vowels_520(str)
+  str.downcase.count('aeiou')
+end
+
+# 521. Find second largest element in array
+def second_largest_521(arr)
+  arr.uniq.sort[-2]
+end
+
+# 522. Convert number to words (English) up to 999
+def number_to_words_522(num)
+  ones = %w[zero one two three four five six seven eight nine]
+  teens = %w[ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen]
+  tens = %w[zero ten twenty thirty forty fifty sixty seventy eighty ninety]
+
+  return ones[num] if num < 10
+  return teens[num - 10] if num < 20
+
+  if num < 100
+    t = tens[num / 10]
+    o = num % 10
+    return o == 0 ? t : "#{t}-#{ones[o]}"
+  end
+
+  if num < 1000
+    h = ones[num / 100] + ' hundred'
+    r = num % 100
+    return r == 0 ? h : "#{h} and #{number_to_words_522(r)}"
+  end
+
+  "number too large"
+end
+
+# 523. Group array elements by parity
+def group_by_parity_523(arr)
+  arr.group_by(&:even?)
+end
+
+# 524. Find longest string in array
+def longest_string_524(arr)
+  arr.max_by(&:length)
+end
+
+# 525. Generate random hex color code
+def random_hex_color_525
+  "#" + "%06x" % (rand * 0xffffff)
+end
+
+# 526. Check if string is valid IPv4 address
+def valid_ipv4_526(str)
+  parts = str.split('.')
+  return false unless parts.size == 4
+  parts.all? { |p| p =~ /\A\d+\z/ && p.to_i.between?(0, 255) }
+end
+
+# 527. Merge two hashes with sum of values on key conflict
+def merge_sum_hashes_527(h1, h2)
+  h1.merge(h2) { |_, v1, v2| v1 + v2 }
+end
+
+# 528. Find all indices of element in array
+def all_indices_528(arr, elem)
+  arr.each_index.select { |i| arr[i] == elem }
+end
+
+# 529. Convert snake_case to CamelCase
+def snake_to_camel_529(str)
+  str.split('_').map(&:capitalize).join
+end
+
+# 530. Check if number is prime
+def prime_530(n)
+  return false if n < 2
+  (2..Math.sqrt(n)).none? { |i| n % i == 0 }
+end
+
+# 531. Calculate LCM of two numbers
+def lcm_531(a, b)
+  (a * b) / gcd_515(a, b)
+end
+
+# 532. Remove duplicates but keep order in string characters
+def unique_chars_532(str)
+  seen = {}
+  str.chars.select { |c| seen[c] ? false : seen[c] = true }.join
+end
+
+# 533. Sort array of strings by length
+def sort_by_length_533(arr)
+  arr.sort_by(&:length)
+end
+
+# 534. Count words in a string
+def word_count_534(str)
+  str.scan(/\w+/).size
+end
+
+# 535. Find intersection of arrays
+def array_intersection_535(arr1, arr2)
+  arr1 & arr2
+end
+
+# 536. Check if array is a palindrome
+def array_palindrome_536(arr)
+  arr == arr.reverse
+end
+
+# 537. Check if two arrays have same elements regardless of order
+def arrays_equal_unordered_537(arr1, arr2)
+  arr1.sort == arr2.sort
+end
+
+# 538. Calculate average of array of numbers
+def average_538(arr)
+  arr.sum.to_f / arr.size
+end
+
+# 539. Extract domain from URL
+def domain_from_url_539(url)
+  url[/https?:\/\/([^\/]+)/, 1]
+end
+
+# 540. Convert string to binary representation
+def string_to_binary_540(str)
+  str.bytes.map { |b| b.to_s(2).rjust(8, '0') }.join(' ')
+end
+
+# 541. Reverse key-values in hash
+def reverse_hash_541(h)
+  h.map { |k, v| [v, k] }.to_h
+end
+
+# 542. Get top N frequent elements in array
+def top_n_frequent_542(arr, n)
+  freq = arr.each_with_object(Hash.new(0)) { |e, h| h[e] += 1 }
+  freq.sort_by { |_, count| -count }.first(n).map(&:first)
+end
+
+# 543. Check if two strings are anagrams
+def anagram_543(s1, s2)
+  s1.downcase.chars.sort == s2.downcase.chars.sort
+end
+
+# 544. Convert array of integers to string with separators
+def join_with_separator_544(arr, sep = ',')
+  arr.join(sep)
+end
+
+# 545. Find min and max in array
+def min_max_545(arr)
+  [arr.min, arr.max]
+end
+
+# 546. Check if string starts with capital letter
+def starts_with_capital_546(str)
+  str[0] =~ /[A-Z]/
+end
+
+# 547. Convert integer to binary string
+def int_to_binary_547(n)
+  n.to_s(2)
+end
+
+# 548. Check if number is perfect square
+def perfect_square_548(n)
+  (Math.sqrt(n) % 1).zero?
+end
+
+# 549. Find all prime numbers up to n
+def primes_up_to_549(n)
+  sieve = Array.new(n + 1, true)
+  sieve[0] = false
+  sieve[1] = false
+  (2..Math.sqrt(n)).each do |i|
+    next unless sieve[i]
+    (i*i).step(n, i) { |j| sieve[j] = false }
+  end
+  sieve.each_index.select { |i| sieve[i] }
+end
+
+# 550. Convert hex string to decimal integer
+def hex_to_decimal_550(hex)
+  hex.to_i(16)
+end
+
+# 551. Generate all permutations of an array
+def permutations_551(arr)
+  arr.permutation.to_a
+end
+
+# 552. Check if string contains only digits
+def digits_only_552(str)
+  !!(str =~ /\A\d+\z/)
+end
+
+# 553. Calculate sum of digits in an integer
+def sum_of_digits_553(n)
+  n.to_s.chars.map(&:to_i).sum
+end
+
+# 554. Merge arrays and remove duplicates
+def merge_unique_554(arr1, arr2)
+  (arr1 + arr2).uniq
+end
+
+# 555. Check if two strings differ by exactly one character
+def differ_by_one_char_555(s1, s2)
+  return false unless s1.length == s2.length
+  diffs = s1.chars.zip(s2.chars).count { |a, b| a != b }
+  diffs == 1
+end
+
+# 556. Repeat string n times
+def repeat_string_556(str, n)
+  str * n
+end
+
+# 557. Get file extension from filename
+def file_extension_557(filename)
+  File.extname(filename).delete_prefix('.')
+end
+
+# 558. Check if array is sorted ascending
+def sorted_ascending_558?(arr)
+  arr.each_cons(2).all? { |a, b| a <= b }
+end
+
+# 559. Generate a random string of given length (alphanumeric)
+def random_string_559(length)
+  (0...length).map { (('a'..'z').to_a + ('0'..'9').to_a).sample }.join
+end
+
+# 560. Replace vowels in string with given character
+def replace_vowels_560(str, char = '*')
+  str.gsub(/[aeiouAEIOU]/, char)
+end
+
+# 561. Calculate power (exponentiation) recursively
+def power_561(base, exp)
+  return 1 if exp == 0
+  base * power_561(base, exp - 1)
+end
+
+# 562. Find all substrings of a string
+def all_substrings_562(str)
+  (0...str.length).flat_map { |start| (start...str.length).map { |finish| str[start..finish] } }
+end
+
+# 563. Check if array contains duplicates
+def contains_duplicates_563?(arr)
+  arr.uniq.length != arr.length
+end
+
+# 564. Capitalize first letter of each sentence
+def capitalize_sentences_564(str)
+  str.gsub(/(?:^|[.!?]\s)([a-z])/) { $1.upcase }
+end
+
+# 565. Find max difference between any two elements in array
+def max_difference_565(arr)
+  arr.max - arr.min
+end
+
+# 566. Convert array of integers to binary strings
+def int_array_to_binary_566(arr)
+  arr.map { |n| n.to_s(2) }
+end
+
+# 567. Generate a UUID v4 string
+def uuid_v4_567
+  require 'securerandom'
+  SecureRandom.uuid
+end
+
+# 568. Filter out strings shorter than given length
+def filter_short_strings_568(arr, min_length)
+  arr.select { |s| s.length >= min_length }
+end
+
+# 569. Find index of first non-repeating character in string
+def first_unique_char_index_569(str)
+  counts = Hash.new(0)
+  str.each_char { |c| counts[c] += 1 }
+  str.chars.index { |c| counts[c] == 1 } || -1
+end
+
+# 570. Calculate sum of squares of an array
+def sum_of_squares_570(arr)
+  arr.map { |n| n**2 }.sum
+end
+
+# 571. Check if string is valid email format (basic)
+def valid_email_571?(str)
+  !!(str =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+end
+
+# 572. Count number of uppercase letters in string
+def count_uppercase_572(str)
+  str.count("A-Z")
+end
+
+# 573. Reverse key and value arrays into a hash
+def arrays_to_hash_573(keys, values)
+  Hash[keys.zip(values)]
+end
+
+# 574. Sort array by frequency of elements descending
+def sort_by_frequency_574(arr)
+  freq = arr.each_with_object(Hash.new(0)) { |e, h| h[e] += 1 }
+  arr.sort_by { |e| -freq[e] }
+end
+
+# 575. Check if string is a valid URL (basic)
+def valid_url_575?(str)
+  !!(str =~ /\A#{URI::regexp(['http', 'https'])}\z/)
+end
+
+# 576. Calculate nth triangular number
+def triangular_number_576(n)
+  n * (n + 1) / 2
+end
+
+# 577. Remove all whitespace from string
+def remove_whitespace_577(str)
+  str.gsub(/\s+/, '')
+end
+
+# 578. Find first duplicate element in array
+def first_duplicate_578(arr)
+  seen = {}
+  arr.find { |e| seen[e] ? true : (seen[e] = true) }
+end
+
+# 579. Convert integer to Roman numeral (1-3999)
+def int_to_roman_579(num)
+  return '' if num <= 0
+  values = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+  numerals = %w[M CM D CD C XC L XL X IX V IV I]
+  result = ''
+  values.zip(numerals).each do |value, numeral|
+    while num >= value
+      result << numeral
+      num -= value
+    end
+  end
+  result
+end
+
+# 580. Generate an array of primes within a range
+def primes_in_range_580(start_num, end_num)
+  (start_num..end_num).select { |n| prime_530(n) }
+end
+
+# 581. Check if array is strictly decreasing
+def strictly_decreasing_581?(arr)
+  arr.each_cons(2).all? { |a, b| b < a }
+end
+
+# 582. Count occurrences of each word in string
+def word_frequency_582(str)
+  words = str.downcase.scan(/\w+/)
+  freq = Hash.new(0)
+  words.each { |w| freq[w] += 1 }
+  freq
+end
+
+# 583. Get last n elements of an array
+def last_n_elements_583(arr, n)
+  arr.last(n)
+end
+
+# 584. Return array with only prime numbers
+def filter_primes_584(arr)
+  arr.select { |n| prime_530(n) }
+end
+
+# 585. Check if two strings differ only by case
+def differ_only_by_case_585?(s1, s2)
+  s1.downcase == s2.downcase && s1 != s2
+end
+
+# 586. Generate a range of characters from start to end
+def char_range_586(start_char, end_char)
+  (start_char..end_char).to_a
+end
+
+# 587. Convert binary string to integer
+def binary_to_int_587(bin_str)
+  bin_str.to_i(2)
+end
+
+# 588. Reverse array in place
+def reverse_in_place_588(arr)
+  arr.reverse!
+end
+
+# 589. Sum of first n natural numbers
+def sum_natural_589(n)
+  n * (n + 1) / 2
+end
+
+# 590. Remove duplicates from string characters
+def unique_chars_590(str)
+  str.chars.uniq.join
+end
+
+# 591. Return first n Fibonacci numbers
+def fibonacci_n_591(n)
+  fibonacci_509(n)
+end
+
+# 592. Check if number is Armstrong number
+def armstrong_592?(num)
+  digits = num.to_s.chars.map(&:to_i)
+  sum = digits.map { |d| d**digits.size }.sum
+  sum == num
+end
+
+# 593. Pad string to given length with spaces
+def pad_string_593(str, length)
+  str.ljust(length)
+end
+
+# 594. Find element with max frequency in array
+def most_frequent_594(arr)
+  freq = arr.each_with_object(Hash.new(0)) { |e, h| h[e] += 1 }
+  freq.max_by { |_, count| count }&.first
+end
+
+# 595. Return keys of hash with max value
+def keys_with_max_value_595(h)
+  max_val = h.values.max
+  h.select { |_, v| v == max_val }.keys
+end
+
+# 596. Convert string to array of ASCII codes
+def string_to_ascii_596(str)
+  str.bytes
+end
+
+# 597. Get nth element from end of array
+def nth_from_end_597(arr, n)
+  arr[-n]
+end
+
+# 598. Find common elements in multiple arrays
+def common_elements_598(*arrays)
+  arrays.reduce(:&)
+end
+
+# 599. Check if array is a subset of another
+def subset_599?(subset, superset)
+  (subset - superset).empty?
+end
+
+# 600. Convert integer to words (extended)
+def number_to_words_600(num)
+  # For simplicity reusing 522, could extend to larger numbers
+  number_to_words_522(num)
+end
+
+# 601. Check if string is palindrome ignoring spaces and punctuation
+def palindrome_ignore_nonalpha_601(str)
+  cleaned = str.downcase.gsub(/[^a-z0-9]/i, '')
+  cleaned == cleaned.reverse
+end
+
+# 602. Convert snake_case to camelCase
+def snake_to_camel_602(str)
+  parts = str.split('_')
+  parts[0] + parts[1..].map(&:capitalize).join
+end
+
+# 603. Convert camelCase to snake_case
+def camel_to_snake_603(str)
+  str.gsub(/([A-Z])/, '_\1').downcase.sub(/^_/, '')
+end
+
+# 604. Calculate factorial iteratively
+def factorial_iter_604(n)
+  (1..n).reduce(1, :*)
+end
+
+# 605. Find longest word in a string
+def longest_word_605(str)
+  str.scan(/\w+/).max_by(&:length)
+end
+
+# 606. Count vowels in a string
+def count_vowels_606(str)
+  str.count("aeiouAEIOU")
+end
+
+# 607. Generate array with numbers divisible by n in a range
+def divisible_by_n_607(range_start, range_end, n)
+  (range_start..range_end).select { |x| x % n == 0 }
+end
+
+# 608. Merge hashes with sum of values for common keys
+def merge_hashes_sum_608(h1, h2)
+  h1.merge(h2) { |_, v1, v2| v1 + v2 }
+end
+
+# 609. Convert array of integers to hexadecimal strings
+def int_array_to_hex_609(arr)
+  arr.map { |n| n.to_s(16) }
+end
+
+# 610. Check if two arrays are equal ignoring order
+def arrays_equal_ignore_order_610?(a1, a2)
+  a1.sort == a2.sort
+end
+
+# 611. Flatten nested arrays
+def flatten_array_611(arr)
+  arr.flatten
+end
+
+# 612. Generate random integer in range [min, max]
+def random_int_612(min, max)
+  rand(min..max)
+end
+
+# 613. Check if string starts with a vowel
+def starts_with_vowel_613?(str)
+  !!(str =~ /\A[aeiouAEIOU]/)
+end
+
+# 614. Remove nil values from array
+def compact_array_614(arr)
+  arr.compact
+end
+
+# 615. Generate acronym from phrase
+def acronym_615(phrase)
+  phrase.split.map { |word| word[0].upcase }.join
+end
+
+# 616. Check if number is even
+def even_616?(n)
+  n % 2 == 0
+end
+
+# 617. Check if number is odd
+def odd_617?(n)
+  n % 2 != 0
+end
+
+# 618. Replace all digits in string with '#'
+def replace_digits_618(str)
+  str.gsub(/\d/, '#')
+end
+
+# 619. Return first n primes (naive)
+def first_n_primes_619(n)
+  primes = []
+  i = 2
+  while primes.size < n
+    primes << i if prime_530(i)
+    i += 1
+  end
+  primes
+end
+
+# 620. Generate random hex color string
+def random_hex_color_620
+  "#" + "%06x" % (rand * 0xffffff)
+end
+
+# 621. Swap case of string characters
+def swap_case_621(str)
+  str.swapcase
+end
+
+# 622. Count number of words in string
+def word_count_622(str)
+  str.scan(/\w+/).size
+end
+
+# 623. Remove duplicate words from string
+def remove_duplicate_words_623(str)
+  words = str.split
+  unique = []
+  words.each { |w| unique << w unless unique.include?(w) }
+  unique.join(' ')
+end
+
+# 624. Find most common character in string
+def most_common_char_624(str)
+  freq = Hash.new(0)
+  str.each_char { |c| freq[c] += 1 }
+  freq.max_by { |_, v| v }&.first
+end
+
+# 625. Generate Fibonacci sequence up to max value
+def fibonacci_up_to_625(max_val)
+  fib = [0, 1]
+  while fib[-1] + fib[-2] <= max_val
+    fib << fib[-1] + fib[-2]
+  end
+  fib
+end
+
+# 626. Find median of numeric array
+def median_626(arr)
+  sorted = arr.sort
+  len = sorted.length
+  if len.even?
+    (sorted[len/2 - 1] + sorted[len/2]).to_f / 2
+  else
+    sorted[len/2]
+  end
+end
+
+# 627. Convert string to title case
+def title_case_627(str)
+  str.split.map(&:capitalize).join(' ')
+end
+
+# 628. Find all anagrams of a word in array
+def find_anagrams_628(word, arr)
+  sorted_word = word.downcase.chars.sort.join
+  arr.select { |w| w.downcase.chars.sort.join == sorted_word }
+end
+
+# 629. Check if string contains only alphabets
+def alpha_only_629?(str)
+  !!(str =~ /\A[a-zA-Z]+\z/)
+end
+
+# 630. Generate a list of squares from 1 to n
+def squares_630(n)
+  (1..n).map { |i| i * i }
+end
+
+# 631. Reverse each word in a string
+def reverse_words_631(str)
+  str.split.map(&:reverse).join(' ')
+end
+
+# 632. Convert integer to binary string with leading zeros up to length
+def int_to_bin_padded_632(num, length)
+  num.to_s(2).rjust(length, '0')
+end
+
+# 633. Find intersection of two arrays
+def array_intersection_633(arr1, arr2)
+  arr1 & arr2
+end
+
+# 634. Calculate Greatest Common Divisor (GCD)
+def gcd_634(a, b)
+  b == 0 ? a : gcd_634(b, a % b)
+end
+
+# 635. Calculate Least Common Multiple (LCM)
+def lcm_635(a, b)
+  (a * b) / gcd_634(a, b)
+end
+
+# 636. Convert array of strings to uppercase
+def uppercase_array_636(arr)
+  arr.map(&:upcase)
+end
+
+# 637. Get unique characters in string preserving order
+def unique_chars_ordered_637(str)
+  seen = {}
+  str.chars.select { |c| !seen[c] && seen[c] = true }.join
+end
+
+# 638. Check if string is a valid IPv4 address
+def valid_ipv4_638?(str)
+  octets = str.split('.')
+  return false unless octets.length == 4
+  octets.all? { |o| o =~ /^\d+$/ && o.to_i.between?(0, 255) }
+end
+
+# 639. Capitalize every other word in string
+def capitalize_alternate_words_639(str)
+  words = str.split
+  words.map.with_index { |w, i| i.even? ? w.capitalize : w.downcase }.join(' ')
+end
+
+# 640. Convert seconds to HH:MM:SS format
+def seconds_to_hms_640(seconds)
+  hrs = seconds / 3600
+  mins = (seconds % 3600) / 60
+  secs = seconds % 60
+  format("%02d:%02d:%02d", hrs, mins, secs)
+end
+
+# 641. Count frequency of characters in string ignoring case
+def char_frequency_ignore_case_641(str)
+  freq = Hash.new(0)
+  str.downcase.each_char { |c| freq[c] += 1 }
+  freq
+end
+
+# 642. Generate range of dates between two dates
+def date_range_642(start_date, end_date)
+  (start_date..end_date).to_a
+end
+
+# 643. Check if array contains a subarray
+def contains_subarray_643?(arr, subarr)
+  arr.each_cons(subarr.size).include?(subarr)
+end
+
+# 644. Find longest common prefix of array of strings
+def longest_common_prefix_644(arr)
+  return '' if arr.empty?
+  prefix = arr[0]
+  arr[1..].each do |str|
+    while !str.start_with?(prefix)
+      prefix = prefix[0...-1]
+      return '' if prefix.empty?
+    end
+  end
+  prefix
+end
+
+# 645. Find sum of digits in a string
+def sum_of_digits_in_string_645(str)
+  str.scan(/\d/).map(&:to_i).sum
+end
+
+# 646. Convert array of booleans to bitstring
+def bool_array_to_bitstring_646(arr)
+  arr.map { |b| b ? '1' : '0' }.join
+end
+
+# 647. Replace multiple spaces with a single space
+def normalize_spaces_647(str)
+  str.gsub(/\s+/, ' ').strip
+end
+
+# 648. Rotate array left by n positions
+def rotate_left_648(arr, n)
+  n = n % arr.size
+  arr[n..-1] + arr[0...n]
+end
+
+# 649. Rotate array right by n positions
+def rotate_right_649(arr, n)
+  n = n % arr.size
+  arr[-n..-1] + arr[0...-n]
+end
+
+# 650. Generate a random password with given length
+def random_password_650(length)
+  chars = [('a'..'z'), ('A'..'Z'), ('0'..'9'), %w[! @ # $ % ^ & * ?]].map(&:to_a).flatten
+  (0...length).map { chars.sample }.join
+end
+
+# 651. Check if a number is prime (simple)
+def prime_651?(n)
+  return false if n <= 1
+  (2..Math.sqrt(n)).none? { |i| n % i == 0 }
+end
+
+# 652. Generate all substrings of a string
+def all_substrings_652(str)
+  substrings = []
+  (0...str.length).each do |i|
+    (i...str.length).each do |j|
+      substrings << str[i..j]
+    end
+  end
+  substrings
+end
+
+# 653. Remove all vowels from string
+def remove_vowels_653(str)
+  str.gsub(/[aeiouAEIOU]/, '')
+end
+
+# 654. Count occurrences of each word in string
+def word_frequency_654(str)
+  freq = Hash.new(0)
+  str.downcase.scan(/\w+/).each { |w| freq[w] += 1 }
+  freq
+end
+
+# 655. Convert array of integers to ASCII chars
+def int_array_to_chars_655(arr)
+  arr.map(&:chr)
+end
+
+# 656. Check if array is palindrome
+def array_palindrome_656?(arr)
+  arr == arr.reverse
+end
+
+# 657. Find difference between two arrays (elements in a1 but not in a2)
+def array_difference_657(a1, a2)
+  a1 - a2
+end
+
+# 658. Calculate sum of elements in nested arrays
+def nested_sum_658(arr)
+  arr.flatten.reduce(0, :+)
+end
+
+# 659. Check if string is a valid email
+def valid_email_659?(str)
+  !!(str =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i)
+end
+
+# 660. Convert string to array of ASCII codes
+def string_to_ascii_array_660(str)
+  str.chars.map(&:ord)
+end
+
+# 661. Repeat a string n times
+def repeat_string_661(str, n)
+  str * n
+end
+
+# 662. Remove duplicates from array while preserving order
+def uniq_preserve_order_662(arr)
+  seen = {}
+  arr.select { |x| !seen[x] && seen[x] = true }
+end
+
+# 663. Calculate average of array of numbers
+def average_663(arr)
+  arr.sum.to_f / arr.size
+end
+
+# 664. Find max difference between two elements where larger comes after smaller
+def max_diff_664(arr)
+  min_val = arr[0]
+  max_diff = 0
+  arr.each do |val|
+    if val < min_val
+      min_val = val
+    else
+      max_diff = [max_diff, val - min_val].max
+    end
+  end
+  max_diff
+end
+
+# 665. Get indices of all occurrences of a value in array
+def indices_of_665(arr, val)
+  arr.each_index.select { |i| arr[i] == val }
+end
+
+# 666. Merge two sorted arrays into one sorted array
+def merge_sorted_arrays_666(a1, a2)
+  (a1 + a2).sort
+end
+
+# 667. Check if string is pangram (contains every alphabet letter)
+def pangram_667?(str)
+  ('a'..'z').all? { |c| str.downcase.include?(c) }
+end
+
+# 668. Generate array of first n even numbers
+def first_n_evens_668(n)
+  (1..Float::INFINITY).lazy.select(&:even?).first(n)
+end
+
+# 669. Generate array of first n odd numbers
+def first_n_odds_669(n)
+  (1..Float::INFINITY).lazy.select(&:odd?).first(n)
+end
+
+# 670. Remove first n elements from array
+def drop_first_n_670(arr, n)
+  arr.drop(n)
+end
+
+# 671. Find smallest missing positive integer in array
+def smallest_missing_positive_671(arr)
+  set = arr.select { |x| x > 0 }.to_set
+  i = 1
+  i += 1 while set.include?(i)
+  i
+end
+
+# 672. Zip two arrays into array of pairs
+def zip_arrays_672(a1, a2)
+  a1.zip(a2)
+end
+
+# 673. Count consonants in string
+def count_consonants_673(str)
+  str.count('bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ')
+end
+
+# 674. Check if a string is numeric
+def numeric_string_674?(str)
+  !!(str =~ /\A[+-]?\d+(\.\d+)?\z/)
+end
+
+# 675. Convert array of strings to integers
+def strings_to_ints_675(arr)
+  arr.map(&:to_i)
+end
+
+# 676. Find union of two arrays
+def array_union_676(a1, a2)
+  (a1 + a2).uniq
+end
+
+# 677. Reverse bits of an integer (32-bit)
+def reverse_bits_677(n)
+  n.to_s(2).rjust(32, '0').reverse.to_i(2)
+end
+
+# 678. Check if string contains substring ignoring case
+def contains_substring_ignore_case_678?(str, substr)
+  str.downcase.include?(substr.downcase)
+end
+
+# 679. Find second largest element in array
+def second_largest_679(arr)
+  arr.uniq.sort[-2]
+end
+
+# 680. Convert array of integers to binary strings
+def int_array_to_bin_680(arr)
+  arr.map { |n| n.to_s(2) }
+end
+
+# 681. Find length of longest increasing subsequence (naive)
+def longest_increasing_subseq_len_681(arr)
+  return 0 if arr.empty?
+  lengths = Array.new(arr.size, 1)
+  (1...arr.size).each do |i|
+    (0...i).each do |j|
+      if arr[i] > arr[j] && lengths[i] < lengths[j] + 1
+        lengths[i] = lengths[j] + 1
+      end
+    end
+  end
+  lengths.max
+end
+
+# 682. Count occurrences of character in string
+def count_char_682(str, char)
+  str.count(char)
+end
+
+# 683. Remove leading and trailing whitespace
+def trim_683(str)
+  str.strip
+end
+
+# 684. Find all prime factors of a number
+def prime_factors_684(n)
+  factors = []
+  divisor = 2
+  while n > 1
+    while n % divisor == 0
+      factors << divisor
+      n /= divisor
+    end
+    divisor += 1
+  end
+  factors
+end
+
+# 685. Convert binary string to integer
+def bin_to_int_685(str)
+  str.to_i(2)
+end
+
+# 686. Check if array is subset of another
+def subset_686?(subset, set)
+  subset.all? { |e| set.include?(e) }
+end
+
+# 687. Find elements that appear only once in array
+def unique_elements_687(arr)
+  arr.select { |x| arr.count(x) == 1 }
+end
+
+# 688. Count words with length > n in string
+def count_long_words_688(str, n)
+  str.scan(/\w+/).count { |w| w.length > n }
+end
+
+# 689. Repeat each character in string n times
+def repeat_chars_689(str, n)
+  str.chars.map { |c| c * n }.join
+end
+
+# 690. Check if two strings are anagrams ignoring case and spaces
+def anagrams_ignore_case_spaces_690?(str1, str2)
+  str1.downcase.gsub(/\s+/, '').chars.sort == str2.downcase.gsub(/\s+/, '').chars.sort
+end
+
+# 691. Find sum of even numbers in array
+def sum_even_691(arr)
+  arr.select(&:even?).sum
+end
+
+# 692. Find sum of odd numbers in array
+def sum_odd_692(arr)
+  arr.select(&:odd?).sum
+end
+
+# 693. Capitalize first letter of each sentence in string
+def capitalize_sentences_693(str)
+  str.gsub(/(?:^|[.!?]\s+)([a-z])/) { $1.upcase }
+end
+
+# 694. Remove all non-alphanumeric characters from string
+def remove_non_alphanumeric_694(str)
+  str.gsub(/[^0-9a-z]/i, '')
+end
+
+# 695. Find all unique pairs in array that sum to target
+def pairs_with_sum_695(arr, target)
+  seen = {}
+  pairs = []
+  arr.each do |num|
+    complement = target - num
+    if seen[complement]
+      pairs << [complement, num].sort
+    end
+    seen[num] = true
+  end
+  pairs.uniq
+end
+
+# 696. Return the middle element(s) of array
+def middle_elements_696(arr)
+  len = arr.length
+  if len.odd?
+    [arr[len/2]]
+  else
+    arr[len/2 - 1, 2]
+  end
+end
+
+# 697. Convert string to reversed ASCII values array
+def reversed_ascii_array_697(str)
+  str.chars.map(&:ord).reverse
+end
+
+# 698. Find longest palindrome substring (naive)
+def longest_palindrome_substring_698(str)
+  max_len = 1
+  start_index = 0
+  (0...str.length).each do |i|
+    (i...str.length).each do |j|
+      substr = str[i..j]
+      if substr == substr.reverse && substr.length > max_len
+        max_len = substr.length
+        start_index = i
+      end
+    end
+  end
+  str[start_index, max_len]
+end
+
+# 699. Check if string contains only digits
+def digits_only_699?(str)
+  !!(str =~ /\A\d+\z/)
+end
+
+# 700. Convert array of strings to floats
+def strings_to_floats_700(arr)
+  arr.map(&:to_f)
+end
